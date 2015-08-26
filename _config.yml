@@ -70,5 +70,5 @@ theme: landscape
 deploy:
   type: git
   repo: git@github.com:zhangwei/zhangwei.github.io.git
-  branch: gh-pages
-  # branch: master
+  # branch: gh-pages
+  branch: master
