@@ -13,8 +13,9 @@ tags:
 https://user:api-token@jenkins-server/job/jobname/buildWithParameters?token=asecuretoken
 ```
 - #### Content type:
-x-www-form-urlencoded  (* json option not working)
-
+```
+x-www-form-urlencoded  (json option not working...)
+```
 
 ### 2. 在 jenkins-server 设置 job 
 
