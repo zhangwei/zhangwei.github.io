@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Zhang Wei&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Zhang Wei&#39;s Blog">
+<meta property="og:url" content="https://zhangwei.github.io/index.html">
+<meta property="og:site_name" content="Zhang Wei&#39;s Blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Zhang Wei&#39;s Blog">
+  
+    <link rel="alternative" href="/atom.xml" title="Zhang Wei&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Zhang Wei&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zhangwei.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-古いIEでのJS適合性対応" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/11/11/古いIEでのJS適合性対応/" class="article-date">
+  <time datetime="2015-11-11T09:08:07.000Z" itemprop="datePublished">2015-11-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/11/11/古いIEでのJS適合性対応/">古いIEでのJS適合性対応</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>IE7,IE8は問題が多い</li>
+</ul>
+<p>​    <a href="http://kangax.github.io/compat-table/es5/" target="_blank" rel="noopener">http://kangax.github.io/compat-table/es5/</a></p>
+<ul>
+<li><p>Array.prototype.indexOfのIE7、IE8の退避方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf#Compatibility</span></div><div class="line"><span class="keyword">if</span> (!<span class="built_in">Array</span>.prototype.indexOf) &#123;</div><div class="line">  <span class="built_in">Array</span>.prototype.indexOf = <span class="function"><span class="keyword">function</span> (<span class="params">searchElement <span class="regexp">/*, fromIndex */</span> </span>) </span>&#123;</div><div class="line"><span class="meta">    "use strict"</span>;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (<span class="keyword">this</span> == <span class="literal">null</span>) &#123;</div><div class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> t = <span class="built_in">Object</span>(<span class="keyword">this</span>);</div><div class="line">    <span class="keyword">var</span> len = t.length &gt;&gt;&gt; <span class="number">0</span>;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (len === <span class="number">0</span>) &#123;</div><div class="line">      <span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> n = <span class="number">0</span>;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (<span class="built_in">arguments</span>.length &gt; <span class="number">0</span>) &#123;</div><div class="line">      n = <span class="built_in">Number</span>(<span class="built_in">arguments</span>[<span class="number">1</span>]);</div><div class="line"></div><div class="line">      <span class="keyword">if</span> (n != n) &#123; <span class="comment">// shortcut for verifying if it's NaN</span></div><div class="line">      n = <span class="number">0</span>;</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (n != <span class="number">0</span> &amp;&amp; n != <span class="literal">Infinity</span> &amp;&amp; n != -<span class="literal">Infinity</span>) &#123;</div><div class="line">      n = (n &gt; <span class="number">0</span> || <span class="number">-1</span>) * <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.abs(n));</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">if</span> (n &gt;= len) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">var</span> k = n &gt;= <span class="number">0</span> ? n : <span class="built_in">Math</span>.max(len - <span class="built_in">Math</span>.abs(n), <span class="number">0</span>);</div><div class="line"></div><div class="line">  <span class="keyword">for</span> (; k &lt; len; k++) &#123;</div><div class="line">    <span class="keyword">if</span> (k <span class="keyword">in</span> t &amp;&amp; t[k] === searchElement) &#123;</div><div class="line">      <span class="keyword">return</span> k;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+<li><p>Object.keysのIE7、IE8の退避方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// http://stackoverflow.com/questions/18912932/object-keys-not-working-in-internet-explorer</span></div><div class="line"><span class="keyword">if</span> (!<span class="built_in">Object</span>.keys) &#123;</div><div class="line">  <span class="built_in">Object</span>.keys = <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> keys = [];</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i <span class="keyword">in</span> obj) &#123;</div><div class="line">      <span class="keyword">if</span> (obj.hasOwnProperty(i)) &#123;</div><div class="line">        keys.push(i);</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> keys;</div><div class="line">  &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zhangwei.github.io/2015/11/11/古いIEでのJS適合性対応/" data-id="cj8ba6mg60003qep53ewfiveu" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-github-hooks-jenkins-jobs" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/09/15/github-hooks-jenkins-jobs/" class="article-date">
+  <time datetime="2015-09-15T05:56:11.000Z" itemprop="datePublished">2015-09-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/09/15/github-hooks-jenkins-jobs/">github hooks jenkins jobs</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-在github-com的-settings-里追加-webhook"><a href="#1-在github-com的-settings-里追加-webhook" class="headerlink" title="1. 在github.com的 settings 里追加 webhook"></a>1. 在github.com的 settings 里追加 webhook</h3><ul>
+<li><h4 id="Payload-URL"><a href="#Payload-URL" class="headerlink" title="Payload URL:"></a>Payload URL:</h4><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">https</span>://user:api-<span class="keyword">token</span>@jenkins-server/job/jobname/buildWithParameters?<span class="keyword">token</span>=asecuretoken</div></pre></td></tr></table></figure>
+</li>
+<li><h4 id="Content-type"><a href="#Content-type" class="headerlink" title="Content type:"></a>Content type:</h4><figure class="highlight gams"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">x</span></span>-www-form-urlencoded  (json <span class="keyword">option</span> <span class="keyword">not</span> working...)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="2-在-jenkins-server-设置-job"><a href="#2-在-jenkins-server-设置-job" class="headerlink" title="2. 在 jenkins-server 设置 job"></a>2. 在 jenkins-server 设置 job</h3><ul>
+<li><h4 id="Parameterized-Build"><a href="#Parameterized-Build" class="headerlink" title="Parameterized Build"></a>Parameterized Build</h4><figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">String</span>: payload</div></pre></td></tr></table></figure>
+</li>
+<li><h4 id="Execut-shell"><a href="#Execut-shell" class="headerlink" title="Execut shell"></a>Execut shell</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="built_in">echo</span> <span class="string">"PUSHED=`echo <span class="variable">$payload</span>|/usr/bin/jq -r '.ref'|sed "</span>s/refs\/heads\///<span class="string">"`"</span> &gt; temp.txt</div></pre></td></tr></table></figure>
+</li>
+<li><h4 id="Inject-environment-variables"><a href="#Inject-environment-variables" class="headerlink" title="Inject environment variables"></a>Inject environment variables</h4><figure class="highlight mathematica"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">Properties</span> <span class="keyword">File</span> <span class="keyword">Path</span>: $&#123;WORKSPACE&#125;/temp.txt</div></pre></td></tr></table></figure>
+</li>
+<li><h4 id="Conditional-steps-multiple"><a href="#Conditional-steps-multiple" class="headerlink" title="Conditional steps (multiple)"></a>Conditional steps (multiple)</h4><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">Run</span><span class="bash">? String match</span></div><div class="line"><span class="bash">String1: <span class="variable">$&#123;ENV,var="PUSHED"&#125;</span></span></div><div class="line"><span class="bash">String2: master</span></div><div class="line"><span class="bash"></span></div><div class="line"><span class="bash">Steps to run <span class="keyword">if</span> condition is met</span></div><div class="line"><span class="bash">    Trigger/call builds on other projects</span></div><div class="line"><span class="bash">    projects-name</span></div></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zhangwei.github.io/2015/09/15/github-hooks-jenkins-jobs/" data-id="cj8ba6mfq0000qep5lo7o3pkl" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jenkins/">jenkins</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webhook/">webhook</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-docker-ports" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/09/09/docker-ports/" class="article-date">
+  <time datetime="2015-09-09T09:25:01.000Z" itemprop="datePublished">2015-09-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/09/09/docker-ports/">docker-ports</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-Dockerfile-EXPOSE"><a href="#1-Dockerfile-EXPOSE" class="headerlink" title="1. Dockerfile EXPOSE"></a>1. Dockerfile EXPOSE</h3><p>The EXPOSE instructions informs Docker that the container will listen on the specified network ports at runtime. Docker uses this information to interconnect containers using links and to determine which ports to expose to the host when using the -P flag.</p>
+<p>Note: EXPOSE doesn’t define which ports can be exposed to the host or make ports accessible from the host by default. To expose ports to the host, at runtime, use the -p flag or the -P flag</p>
+<h3 id="2-docker-run-create-P-–publish-all-true-false"><a href="#2-docker-run-create-P-–publish-all-true-false" class="headerlink" title="2. docker run / create -P, –publish-all=true|false"></a>2. docker run / create -P, –publish-all=true|false</h3><p>When that container was created, the -P flag was used to automatically map any network port inside it to a random high port within an ephemeral port range on your Docker host. Next, when docker ps was run, you saw that port 5000 in the container was bound to port 49155 on the host.</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ docker run -d -<span class="keyword">P</span> training/webapp <span class="keyword">python</span> app.<span class="keyword">py</span></div><div class="line">$ docker <span class="keyword">ps</span> nostalgic_morse</div><div class="line">CONTAINER ID  IMAGE                   COMMAND       CREATED        STATUS        PORTS                    NAMES</div><div class="line">bc533791f3f5  training/webapp:latest  <span class="keyword">python</span> app.<span class="keyword">py</span> <span class="number">5</span> seconds ago  Up <span class="number">2</span> seconds  <span class="number">0.0</span>.<span class="number">0.0</span>:<span class="number">49155</span>-&gt;<span class="number">5000</span>/tcp  nostalgic_morse</div></pre></td></tr></table></figure>
+<h3 id="3-docker-run-create-p-–publish"><a href="#3-docker-run-create-p-–publish" class="headerlink" title="3. docker run / create -p, –publish=[]"></a>3. docker run / create -p, –publish=[]</h3><p>You also saw how you can bind a container’s ports to a specific port using the -p flag. Here port 80 of the host is mapped to port 5000 of the container:</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ docker <span class="keyword">run</span><span class="bash"> -d -p 80:5000 training/webapp python app.py</span></div></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zhangwei.github.io/2015/09/09/docker-ports/" data-id="cj8ba6mfv0001qep5rjtteon4" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/">docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/network/">network</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+  
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jenkins/">jenkins</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network/">network</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webhook/">webhook</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/tags/network/" style="font-size: 10px;">network</a> <a href="/tags/webhook/" style="font-size: 10px;">webhook</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/11/11/古いIEでのJS適合性対応/">古いIEでのJS適合性対応</a>
+          </li>
+        
+          <li>
+            <a href="/2015/09/15/github-hooks-jenkins-jobs/">github hooks jenkins jobs</a>
+          </li>
+        
+          <li>
+            <a href="/2015/09/09/docker-ports/">docker-ports</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Zhang Wei<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

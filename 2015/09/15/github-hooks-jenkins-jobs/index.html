@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>github hooks jenkins jobs | Zhang Wei&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1. 在github.com的 settings 里追加 webhook Payload URL:1https://user:api-token@jenkins-server/job/jobname/buildWithParameters?token=asecuretoken  Content type:1x-www-form-urlencoded  (json option not workin">
+<meta name="keywords" content="jenkins,github,webhook">
+<meta property="og:type" content="article">
+<meta property="og:title" content="github hooks jenkins jobs">
+<meta property="og:url" content="https://zhangwei.github.io/2015/09/15/github-hooks-jenkins-jobs/index.html">
+<meta property="og:site_name" content="Zhang Wei&#39;s Blog">
+<meta property="og:description" content="1. 在github.com的 settings 里追加 webhook Payload URL:1https://user:api-token@jenkins-server/job/jobname/buildWithParameters?token=asecuretoken  Content type:1x-www-form-urlencoded  (json option not workin">
+<meta property="og:updated_time" content="2017-10-03T07:21:56.904Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="github hooks jenkins jobs">
+<meta name="twitter:description" content="1. 在github.com的 settings 里追加 webhook Payload URL:1https://user:api-token@jenkins-server/job/jobname/buildWithParameters?token=asecuretoken  Content type:1x-www-form-urlencoded  (json option not workin">
+  
+    <link rel="alternative" href="/atom.xml" title="Zhang Wei&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Zhang Wei&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zhangwei.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-github-hooks-jenkins-jobs" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/09/15/github-hooks-jenkins-jobs/" class="article-date">
+  <time datetime="2015-09-15T05:56:11.000Z" itemprop="datePublished">2015-09-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      github hooks jenkins jobs
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-在github-com的-settings-里追加-webhook"><a href="#1-在github-com的-settings-里追加-webhook" class="headerlink" title="1. 在github.com的 settings 里追加 webhook"></a>1. 在github.com的 settings 里追加 webhook</h3><ul>
+<li><h4 id="Payload-URL"><a href="#Payload-URL" class="headerlink" title="Payload URL:"></a>Payload URL:</h4><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">https</span>://user:api-<span class="keyword">token</span>@jenkins-server/job/jobname/buildWithParameters?<span class="keyword">token</span>=asecuretoken</div></pre></td></tr></table></figure>
+</li>
+<li><h4 id="Content-type"><a href="#Content-type" class="headerlink" title="Content type:"></a>Content type:</h4><figure class="highlight gams"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">x</span></span>-www-form-urlencoded  (json <span class="keyword">option</span> <span class="keyword">not</span> working...)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="2-在-jenkins-server-设置-job"><a href="#2-在-jenkins-server-设置-job" class="headerlink" title="2. 在 jenkins-server 设置 job"></a>2. 在 jenkins-server 设置 job</h3><ul>
+<li><h4 id="Parameterized-Build"><a href="#Parameterized-Build" class="headerlink" title="Parameterized Build"></a>Parameterized Build</h4><figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">String</span>: payload</div></pre></td></tr></table></figure>
+</li>
+<li><h4 id="Execut-shell"><a href="#Execut-shell" class="headerlink" title="Execut shell"></a>Execut shell</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="built_in">echo</span> <span class="string">"PUSHED=`echo <span class="variable">$payload</span>|/usr/bin/jq -r '.ref'|sed "</span>s/refs\/heads\///<span class="string">"`"</span> &gt; temp.txt</div></pre></td></tr></table></figure>
+</li>
+<li><h4 id="Inject-environment-variables"><a href="#Inject-environment-variables" class="headerlink" title="Inject environment variables"></a>Inject environment variables</h4><figure class="highlight mathematica"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">Properties</span> <span class="keyword">File</span> <span class="keyword">Path</span>: $&#123;WORKSPACE&#125;/temp.txt</div></pre></td></tr></table></figure>
+</li>
+<li><h4 id="Conditional-steps-multiple"><a href="#Conditional-steps-multiple" class="headerlink" title="Conditional steps (multiple)"></a>Conditional steps (multiple)</h4><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">Run</span><span class="bash">? String match</span></div><div class="line"><span class="bash">String1: <span class="variable">$&#123;ENV,var="PUSHED"&#125;</span></span></div><div class="line"><span class="bash">String2: master</span></div><div class="line"><span class="bash"></span></div><div class="line"><span class="bash">Steps to run <span class="keyword">if</span> condition is met</span></div><div class="line"><span class="bash">    Trigger/call builds on other projects</span></div><div class="line"><span class="bash">    projects-name</span></div></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zhangwei.github.io/2015/09/15/github-hooks-jenkins-jobs/" data-id="cj8ba6mfq0000qep5lo7o3pkl" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jenkins/">jenkins</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webhook/">webhook</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/11/11/古いIEでのJS適合性対応/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          古いIEでのJS適合性対応
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/09/09/docker-ports/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">docker-ports</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jenkins/">jenkins</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network/">network</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webhook/">webhook</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/tags/network/" style="font-size: 10px;">network</a> <a href="/tags/webhook/" style="font-size: 10px;">webhook</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/11/11/古いIEでのJS適合性対応/">古いIEでのJS適合性対応</a>
+          </li>
+        
+          <li>
+            <a href="/2015/09/15/github-hooks-jenkins-jobs/">github hooks jenkins jobs</a>
+          </li>
+        
+          <li>
+            <a href="/2015/09/09/docker-ports/">docker-ports</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Zhang Wei<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
