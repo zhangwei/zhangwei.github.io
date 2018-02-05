@@ -1,14 +1,14 @@
 title: github hooks jenkins jobs
 date: 2015-09-15 14:56:11
 tags:
- - jenkins
- - github
- - webhook
+- jenkins
+- github
+- webhook
 ---
 
 ### 1. 在github.com的 settings 里追加 webhook
 
-- #### Payload URL: 
+- #### Payload URL:
 ```
 https://user:api-token@jenkins-server/job/jobname/buildWithParameters?token=asecuretoken
 ```
@@ -17,7 +17,7 @@ https://user:api-token@jenkins-server/job/jobname/buildWithParameters?token=asec
 x-www-form-urlencoded  (json option not working...)
 ```
 
-### 2. 在 jenkins-server 设置 job 
+### 2. 在 jenkins-server 设置 job
 
 - #### Parameterized Build
 ```
