@@ -6,7 +6,8 @@ tags:
 ---
 - IE7,IE8は問題が多い
 
-​	http://kangax.github.io/compat-table/es5/
+http://kangax.github.io/compat-table/es5/
+
 
 - Array.prototype.indexOfのIE7、IE8の退避方法
 
