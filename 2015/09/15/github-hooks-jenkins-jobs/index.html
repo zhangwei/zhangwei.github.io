@@ -12,7 +12,7 @@
 <meta property="og:url" content="https://zhangwei.github.io/2015/09/15/github-hooks-jenkins-jobs/index.html">
 <meta property="og:site_name" content="Zhang Wei&#39;s Blog">
 <meta property="og:description" content="1. 在github.com的 settings 里追加 webhook Payload URL:1https://user:api-token@jenkins-server/job/jobname/buildWithParameters?token=asecuretoken  Content type:1x-www-form-urlencoded  (json option not workin">
-<meta property="og:updated_time" content="2018-02-05T06:07:17.225Z">
+<meta property="og:updated_time" content="2018-02-05T07:27:24.943Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="github hooks jenkins jobs">
 <meta name="twitter:description" content="1. 在github.com的 settings 里追加 webhook Payload URL:1https://user:api-token@jenkins-server/job/jobname/buildWithParameters?token=asecuretoken  Content type:1x-www-form-urlencoded  (json option not workin">
@@ -96,7 +96,8 @@
 </li>
 <li><h4 id="Inject-environment-variables"><a href="#Inject-environment-variables" class="headerlink" title="Inject environment variables"></a>Inject environment variables</h4><figure class="highlight mathematica"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">Properties</span> <span class="keyword">File</span> <span class="keyword">Path</span>: $&#123;WORKSPACE&#125;/temp.txt</div></pre></td></tr></table></figure>
 </li>
-<li><h4 id="Conditional-steps-multiple"><a href="#Conditional-steps-multiple" class="headerlink" title="Conditional steps (multiple)"></a>Conditional steps (multiple)</h4><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">Run</span><span class="bash">? String match</span></div><div class="line"><span class="bash">String1: <span class="variable">$&#123;ENV,var="PUSHED"&#125;</span></span></div><div class="line"><span class="bash">String2: master</span></div><div class="line"><span class="bash"></span></div><div class="line"><span class="bash">Steps to run <span class="keyword">if</span> condition is met</span></div><div class="line"><span class="bash">    Trigger/call builds on other projects</span></div><div class="line"><span class="bash">    projects-name</span></div></pre></td></tr></table></figure></li>
+<li><h4 id="Conditional-steps-multiple"><a href="#Conditional-steps-multiple" class="headerlink" title="Conditional steps (multiple)"></a>Conditional steps (multiple)</h4><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">Run</span><span class="bash">? String match</span></div><div class="line"><span class="bash">String1: <span class="variable">$&#123;ENV,var="PUSHED"&#125;</span></span></div><div class="line"><span class="bash">String2: master</span></div><div class="line"><span class="bash"></span></div><div class="line"><span class="bash">Steps to run <span class="keyword">if</span> condition is met</span></div><div class="line"><span class="bash">    Trigger/call builds on other projects</span></div><div class="line"><span class="bash">    projects-name</span></div></pre></td></tr></table></figure>
+</li>
 </ul>
 
       
@@ -138,7 +139,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jenkins/">jenkins</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webhook/">webhook</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jenkins/">jenkins</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webhook/">webhook</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -147,7 +148,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/tags/webhook/" style="font-size: 10px;">webhook</a>
+      <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/webhook/" style="font-size: 10px;">webhook</a>
     </div>
   </div>
 
