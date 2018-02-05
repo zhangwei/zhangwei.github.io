@@ -5,17 +5,17 @@
   
   <title>古いIEでのJS適合性対応 | Zhang Wei&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="IE7,IE8は問題が多い  ​    http://kangax.github.io/compat-table/es5/  Array.prototype.indexOfのIE7、IE8の退避方法 123456789101112131415161718192021222324252627282930313233343536373839404142// https://developer.moz">
+  <meta name="description" content="IE7,IE8は問題が多い  http://kangax.github.io/compat-table/es5/  Array.prototype.indexOfのIE7、IE8の退避方法 123456789101112131415161718192021222324252627282930313233343536373839404142// https://developer.mozilla.">
 <meta name="keywords" content="js">
 <meta property="og:type" content="article">
 <meta property="og:title" content="古いIEでのJS適合性対応">
-<meta property="og:url" content="https://zhangwei.github.io/2015/11/11/古いIEでのJS適合性対応/index.html">
+<meta property="og:url" content="https://zhangwei.github.io/2015/11/11/古いIEでのJS適合性対応/index.html">
 <meta property="og:site_name" content="Zhang Wei&#39;s Blog">
-<meta property="og:description" content="IE7,IE8は問題が多い  ​    http://kangax.github.io/compat-table/es5/  Array.prototype.indexOfのIE7、IE8の退避方法 123456789101112131415161718192021222324252627282930313233343536373839404142// https://developer.moz">
-<meta property="og:updated_time" content="2018-02-05T07:28:51.711Z">
+<meta property="og:description" content="IE7,IE8は問題が多い  http://kangax.github.io/compat-table/es5/  Array.prototype.indexOfのIE7、IE8の退避方法 123456789101112131415161718192021222324252627282930313233343536373839404142// https://developer.mozilla.">
+<meta property="og:updated_time" content="2018-02-05T07:35:42.750Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="古いIEでのJS適合性対応">
-<meta name="twitter:description" content="IE7,IE8は問題が多い  ​    http://kangax.github.io/compat-table/es5/  Array.prototype.indexOfのIE7、IE8の退避方法 123456789101112131415161718192021222324252627282930313233343536373839404142// https://developer.moz">
+<meta name="twitter:description" content="IE7,IE8は問題が多い  http://kangax.github.io/compat-table/es5/  Array.prototype.indexOfのIE7、IE8の退避方法 123456789101112131415161718192021222324252627282930313233343536373839404142// https://developer.mozilla.">
   
     <link rel="alternative" href="/atom.xml" title="Zhang Wei&#39;s Blog" type="application/atom+xml">
   
@@ -61,9 +61,9 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-古いIEでのJS適合性対応" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-古いIEでのJS適合性対応" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/11/11/古いIEでのJS適合性対応/" class="article-date">
+    <a href="/2015/11/11/古いIEでのJS適合性対応/" class="article-date">
   <time datetime="2015-11-11T09:08:07.000Z" itemprop="datePublished">2015-11-11</time>
 </a>
     
@@ -86,7 +86,7 @@
         <ul>
 <li>IE7,IE8は問題が多い</li>
 </ul>
-<p>​    <a href="http://kangax.github.io/compat-table/es5/" target="_blank" rel="noopener">http://kangax.github.io/compat-table/es5/</a></p>
+<p><a href="http://kangax.github.io/compat-table/es5/" target="_blank" rel="noopener">http://kangax.github.io/compat-table/es5/</a></p>
 <ul>
 <li><p>Array.prototype.indexOfのIE7、IE8の退避方法</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf#Compatibility</span></div><div class="line"><span class="keyword">if</span> (!<span class="built_in">Array</span>.prototype.indexOf) &#123;</div><div class="line">  <span class="built_in">Array</span>.prototype.indexOf = <span class="function"><span class="keyword">function</span> (<span class="params">searchElement <span class="regexp">/*, fromIndex */</span> </span>) </span>&#123;</div><div class="line"><span class="meta">    "use strict"</span>;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (<span class="keyword">this</span> == <span class="literal">null</span>) &#123;</div><div class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> t = <span class="built_in">Object</span>(<span class="keyword">this</span>);</div><div class="line">    <span class="keyword">var</span> len = t.length &gt;&gt;&gt; <span class="number">0</span>;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (len === <span class="number">0</span>) &#123;</div><div class="line">      <span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> n = <span class="number">0</span>;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (<span class="built_in">arguments</span>.length &gt; <span class="number">0</span>) &#123;</div><div class="line">      n = <span class="built_in">Number</span>(<span class="built_in">arguments</span>[<span class="number">1</span>]);</div><div class="line"></div><div class="line">      <span class="keyword">if</span> (n != n) &#123; <span class="comment">// shortcut for verifying if it's NaN</span></div><div class="line">      n = <span class="number">0</span>;</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (n != <span class="number">0</span> &amp;&amp; n != <span class="literal">Infinity</span> &amp;&amp; n != -<span class="literal">Infinity</span>) &#123;</div><div class="line">      n = (n &gt; <span class="number">0</span> || <span class="number">-1</span>) * <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.abs(n));</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">if</span> (n &gt;= len) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">var</span> k = n &gt;= <span class="number">0</span> ? n : <span class="built_in">Math</span>.max(len - <span class="built_in">Math</span>.abs(n), <span class="number">0</span>);</div><div class="line"></div><div class="line">  <span class="keyword">for</span> (; k &lt; len; k++) &#123;</div><div class="line">    <span class="keyword">if</span> (k <span class="keyword">in</span> t &amp;&amp; t[k] === searchElement) &#123;</div><div class="line">      <span class="keyword">return</span> k;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -100,7 +100,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://zhangwei.github.io/2015/11/11/古いIEでのJS適合性対応/" data-id="cjd9vta940001fxp5d3r93mj5" class="article-share-link">Share</a>
+      <a data-url="https://zhangwei.github.io/2015/11/11/古いIEでのJS適合性対応/" data-id="cjd9wjjax00029wp5dvi0iwt8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
@@ -110,6 +110,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2015/11/11/古いIEでのJS適合性対応/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          古いIEでのJS適合性対応
+        
+      </div>
+    </a>
   
   
     <a href="/2015/09/15/github-hooks-jenkins-jobs/" id="article-nav-older" class="article-nav-link-wrap">
@@ -132,7 +141,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jenkins/">jenkins</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webhook/">webhook</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jenkins/">jenkins</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webhook/">webhook</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -141,7 +150,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/webhook/" style="font-size: 10px;">webhook</a>
+      <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/tags/js/" style="font-size: 20px;">js</a> <a href="/tags/webhook/" style="font-size: 10px;">webhook</a>
     </div>
   </div>
 
@@ -150,7 +159,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -163,6 +172,10 @@
         
           <li>
             <a href="/2015/11/11/古いIEでのJS適合性対応/">古いIEでのJS適合性対応</a>
+          </li>
+        
+          <li>
+            <a href="/2015/11/11/古いIEでのJS適合性対応/">古いIEでのJS適合性対応</a>
           </li>
         
           <li>
